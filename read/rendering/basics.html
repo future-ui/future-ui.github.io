@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../gitbook/style.css">
     
         
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
         
     
     
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath=".." data-revision="Sun Oct 11 2015 21:53:51 GMT-0700 (PDT)">
+    <div class="book" data-level="1.1" data-basepath=".." data-revision="Mon Oct 12 2015 07:56:00 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -889,20 +889,20 @@
 <h2 id="a-simple-component">A Simple Component</h2>
 <p>The following component renders a heading. We can then use
 <code>react-dom#render</code> to attach to the body of the <code>document</code>.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>;
+<pre><code class="lang-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> from <span class="token string">&apos;react&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> render <span class="token punctuation">}</span> from <span class="token string">&apos;react-dom&apos;</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Simple</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
-  render() {
-    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>;</span>
-  }
-}
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Simple</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Hello World<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<pre><code class="lang-javascript">render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Simple</span>/&gt;</span>, document.body);
-</span></code></pre>
+<pre><code class="lang-javascript"><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Simple<span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> document<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <p>To see this component in action, run the following:</p>
-<pre><code class="lang-bash">git <span class="hljs-built_in">clone</span> git@github.com:future-ui/basics.git
-<span class="hljs-built_in">cd</span> basics &amp;&amp; npm install
+<pre><code class="lang-bash"><span class="token function">git</span> clone <span class="token function">git</span>@github<span class="token punctuation">.</span>com<span class="token punctuation">:</span>future<span class="token operator">-</span>ui<span class="token operator">/</span>basics<span class="token punctuation">.</span><span class="token function">git</span>
+<span class="token function">cd</span> basics <span class="token operator">&amp;&amp;</span> npm <span class="token function">install</span>
 npm start
 </code></pre>
 <p>then go to <code>localhost:3000</code></p>
@@ -912,67 +912,67 @@ should play around a bit and see what happens.</p>
 <h2 id="a-more-complex-example">A More Complex Example</h2>
 <p>We want to display a counter which we can adjust using various
 buttons.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<pre><code class="lang-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> from <span class="token string">&apos;react&apos;</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Counter</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
 
-  state = {
-    count: <span class="hljs-number">0</span>
-  }
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    count<span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
 
-  increment = (e) =&gt; {
-    <span class="hljs-keyword">const</span> { count } = <span class="hljs-keyword">this</span>.state;
-    <span class="hljs-keyword">this</span>.setState({
-      count: count + <span class="hljs-number">1</span>
-    });
-  }
+  increment <span class="token operator">=</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> count <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      count<span class="token punctuation">:</span> count <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  decrement = (e) =&gt; {
-    <span class="hljs-keyword">const</span> { count } = <span class="hljs-keyword">this</span>.state;
-    <span class="hljs-keyword">this</span>.setState({
-      count: count - <span class="hljs-number">1</span>
-    });
-  }
+  decrement <span class="token operator">=</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> count <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      count<span class="token punctuation">:</span> count <span class="token operator">-</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  render() {
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        {this.renderControls()}
-        <span class="hljs-tag">&lt;<span class="hljs-title">section</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>My Awesome Counter!<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Counters are an integral part of counting things!<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    )</span>
-  }
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">renderControls</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+        <span class="token operator">&lt;</span>section<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>My Awesome Counter<span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Counters are an integral part of counting things<span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>section<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
 
-  renderControls = () =&gt; {
-    <span class="hljs-keyword">const</span> { count } = <span class="hljs-keyword">this</span>.state;
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">section</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.decrement}</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>{count}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.increment}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
-    )</span>;
-  }
-}
+  renderControls <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> count <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>section<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>decrement<span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token operator">-</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>increment<span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token operator">+</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>section<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>If you take the above example and paste it in to the App.js file from
 before, you will see it render roughly as:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-reactid</span>=<span class="hljs-value">&quot;.0&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">data-reactid</span>=<span class="hljs-value">&quot;.0.0&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">data-reactid</span>=<span class="hljs-value">&quot;.0.0.0&quot;</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">data-reactid</span>=
-    &quot;<span class="hljs-attribute">.0.0.1</span>&quot;&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">data-reactid</span>=<span class="hljs-value">&quot;.0.0.2&quot;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+<pre><code class="lang-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-reactid</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">data-reactid</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>.0.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-reactid</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>.0.0.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>&lt;span data-reactid=
+    &quot;.0.0.1&quot;&gt;7<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-reactid</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>.0.0.2<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span>
 
-  <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">data-reactid</span>=<span class="hljs-value">&quot;.0.1&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">data-reactid</span>=<span class="hljs-value">&quot;.0.1.0&quot;</span>&gt;</span>My Awesome Counter!<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">data-reactid</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>.0.1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">data-reactid</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>.0.1.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>My Awesome Counter!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">data-reactid</span>=<span class="hljs-value">&quot;.0.1.1&quot;</span>&gt;</span>Counters are an integral part of counting
-    things!<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">data-reactid</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>.0.1.1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Counters are an integral part of counting
+    things!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 <p>Each of the <code>data-reactid</code>s is a node in the tree.</p>
 <h2 id="render">render</h2>
@@ -983,30 +983,30 @@ representation of a node.</p>
 <p>In the following case, we ignore <code>this.props</code> and <code>this.state</code> and
 instead render a constant result node representing a paragraph tag
 with some text.</p>
-<pre><code class="lang-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleRender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
-  render() {
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Some Content<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-    )</span>
-  }
-}
+<pre><code class="lang-javascript"><span class="token keyword">class</span> <span class="token class-name">SimpleRender</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Some Content<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Moving up in complexity, we can use both <code>this.props</code> and <code>this.state</code>
 to return a more complex element.</p>
-<pre><code class="lang-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ComplexRender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+<pre><code class="lang-javascript"><span class="token keyword">class</span> <span class="token class-name">ComplexRender</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
 
-  render() {
-    <span class="hljs-keyword">const</span> { name } = <span class="hljs-keyword">this</span>.props;
-    <span class="hljs-keyword">const</span> { age } = <span class="hljs-keyword">this</span>.state;
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>{name}<span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{name} is {age} years old.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    )</span>
-  }
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> name <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> age <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h3<span class="token operator">&gt;</span><span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span><span class="token punctuation">{</span>name<span class="token punctuation">}</span> is <span class="token punctuation">{</span>age<span class="token punctuation">}</span> years old<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
 
-}
+<span class="token punctuation">}</span>
 </code></pre>
 <p>As shown in the code above, the usage of state and props is incredibly
 similar. The difference between the two is how (and where) the data is
@@ -1016,37 +1016,37 @@ managed. We go into this more in the chapter on State Management.</p>
 Draft Speficiation. JSX looks a lot like HTML, but it has some crucial
 differences. For one, JSX transforms to JavaScript. An example of this
 transform, given by the React docs is shown below.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Input (JSX)</span>
-<span class="hljs-keyword">var</span> app = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Nav</span> <span class="hljs-attribute">color</span>=<span class="hljs-value">&quot;blue&quot;</span> /&gt;</span>;</span>
+<pre><code class="lang-javascript"><span class="token comment" spellcheck="true">// Input (JSX)</span>
+<span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token operator">&lt;</span>Nav color<span class="token operator">=</span><span class="token string">&quot;blue&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
 </code></pre>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Output (JS):</span>
-<span class="hljs-keyword">var</span> app = React.createElement(Nav, {color:<span class="hljs-string">&quot;blue&quot;</span>});
+<pre><code class="lang-javascript"><span class="token comment" spellcheck="true">// Output (JS):</span>
+<span class="token keyword">var</span> app <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>Nav<span class="token punctuation">,</span> <span class="token punctuation">{</span>color<span class="token punctuation">:</span><span class="token string">&quot;blue&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Our more complex example from before (<code>ComplexRender</code>) transforms into
 the following render function when using [babel][babel] for the
 transform.</p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> name = <span class="hljs-keyword">this</span>.props.name;
-  <span class="hljs-keyword">var</span> age = <span class="hljs-keyword">this</span>.state.age;
+<pre><code class="lang-javascript"><span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> age <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>age<span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">return</span> React.createElement(
-    <span class="hljs-string">&quot;div&quot;</span>,
-    <span class="hljs-literal">null</span>,
-    React.createElement(
-      <span class="hljs-string">&quot;h3&quot;</span>,
-      <span class="hljs-literal">null</span>,
+  <span class="token keyword">return</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>
+    <span class="token string">&quot;div&quot;</span><span class="token punctuation">,</span>
+    <span class="token keyword">null</span><span class="token punctuation">,</span>
+    React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>
+      <span class="token string">&quot;h3&quot;</span><span class="token punctuation">,</span>
+      <span class="token keyword">null</span><span class="token punctuation">,</span>
       name
-      ),
-    React.createElement(
-      <span class="hljs-string">&quot;p&quot;</span>,
-      <span class="hljs-literal">null</span>,
-      name,
-      <span class="hljs-string">&quot; is &quot;</span>,
-      age,
-      <span class="hljs-string">&quot; years old.&quot;</span>
-    )
-  );
-}
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>
+      <span class="token string">&quot;p&quot;</span><span class="token punctuation">,</span>
+      <span class="token keyword">null</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">,</span>
+      <span class="token string">&quot; is &quot;</span><span class="token punctuation">,</span>
+      age<span class="token punctuation">,</span>
+      <span class="token string">&quot; years old.&quot;</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Knowing that JSX is transformed into JavaScript enables us to
 understand one of the restrictions of our render function: A render

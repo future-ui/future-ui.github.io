@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../gitbook/style.css">
     
         
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
         
     
     
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.3" data-basepath=".." data-revision="Sun Oct 11 2015 21:53:51 GMT-0700 (PDT)">
+    <div class="book" data-level="2.3" data-basepath=".." data-revision="Mon Oct 12 2015 07:56:00 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -891,91 +891,91 @@ display numbers in an application, but we could use it to greater
 effect if we encapsulated [Numeral.js][numeral.js] in it&apos;s own
 element. (note that we&apos;ve skipped some of the Numeral API and focused
 solely on rendering formatted strings).</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// HumaneNumber.js</span>
-<span class="hljs-keyword">import</span> React, { Component, PropTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">const</span> { number, oneOf } = PropTypes;
-<span class="hljs-keyword">import</span> numeral <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;numeral.js&apos;</span>;
+<pre><code class="lang-javascript"><span class="token comment" spellcheck="true">// HumaneNumber.js</span>
+<span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> PropTypes <span class="token punctuation">}</span> from <span class="token string">&apos;react&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> number<span class="token punctuation">,</span> oneOf <span class="token punctuation">}</span> <span class="token operator">=</span> PropTypes<span class="token punctuation">;</span>
+<span class="token keyword">import</span> numeral from <span class="token string">&apos;numeral.js&apos;</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Numeral</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Numeral</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
 
-  static propTypes = {
-    format: string,
-    num: number.isRequired
-  }
+  <span class="token keyword">static</span> propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+    format<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
+    num<span class="token punctuation">:</span> number<span class="token punctuation">.</span>isRequired
+  <span class="token punctuation">}</span>
 
-  static defaultProps = {
-    format: <span class="hljs-string">&apos;0,0&apos;</span>
-  }
+  <span class="token keyword">static</span> defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+    format<span class="token punctuation">:</span> <span class="token string">&apos;0,0&apos;</span>
+  <span class="token punctuation">}</span>
 
-  mkNumeral = () =&gt; {
-    <span class="hljs-keyword">const</span> { num, format } = <span class="hljs-keyword">this</span>.props;
-    <span class="hljs-keyword">return</span> numeral(num).format(format);
-  }
+  mkNumeral <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> num<span class="token punctuation">,</span> format <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">numeral</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>format<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  render() {
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>{this.mkNumeral()}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
-    )</span>
-  }
-}
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">mkNumeral</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HumaneNumber</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">HumaneNumber</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
 
-  static propTypes = {
-    num: number.isRequired
-  }
+  <span class="token keyword">static</span> propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+    num<span class="token punctuation">:</span> number<span class="token punctuation">.</span>isRequired
+  <span class="token punctuation">}</span>
 
-  render() {
-    <span class="hljs-keyword">const</span> { num } = <span class="hljs-keyword">this</span>.props;
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Numeral</span> <span class="hljs-attribute">num</span>=<span class="hljs-value">{num}</span> <span class="hljs-attribute">format</span>=<span class="hljs-value">&apos;0,0&apos;</span> /&gt;</span>
-    )</span>
-  }
-}
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> num <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>Numeral num<span class="token operator">=</span><span class="token punctuation">{</span>num<span class="token punctuation">}</span> format<span class="token operator">=</span><span class="token string">&apos;0,0&apos;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>We can now import and use the simplified <code>HumaneNumber</code> or the more 
 powerful <code>Numeral</code> element in another place in our application.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> React, { Component, PropTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">const</span> { number } = PropTypes;
-<span class="hljs-keyword">import</span> HumaneNumber, { Numeral } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./HumaneNumber&apos;</span>;
+<pre><code class="lang-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> PropTypes <span class="token punctuation">}</span> from <span class="token string">&apos;react&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> number <span class="token punctuation">}</span> <span class="token operator">=</span> PropTypes<span class="token punctuation">;</span>
+<span class="token keyword">import</span> HumaneNumber<span class="token punctuation">,</span> <span class="token punctuation">{</span> Numeral <span class="token punctuation">}</span> from <span class="token string">&apos;./HumaneNumber&apos;</span><span class="token punctuation">;</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TimeAndMoney</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+<span class="token keyword">class</span> <span class="token class-name">TimeAndMoney</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
 
-  static propTypes = {
-    days: number.isRequired,
-    money: number.isRequired
-  }
+  <span class="token keyword">static</span> propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+    days<span class="token punctuation">:</span> number<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
+    money<span class="token punctuation">:</span> number<span class="token punctuation">.</span>isRequired
+  <span class="token punctuation">}</span>
 
-  render() {
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>In <span class="hljs-tag">&lt;<span class="hljs-title">HumaneNumber</span> <span class="hljs-attribute">num</span>=<span class="hljs-value">{days}</span> /&gt;</span> days; you&apos;ve made
-        <span class="hljs-tag">&lt;<span class="hljs-title">Numeral</span> <span class="hljs-attribute">num</span>=<span class="hljs-value">{money}</span> <span class="hljs-attribute">format</span>=<span class="hljs-value">&apos;($ 0.00 a)&apos;</span> /&gt;</span> dollars<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    )</span>
-  }
-}
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>In <span class="token operator">&lt;</span>HumaneNumber num<span class="token operator">=</span><span class="token punctuation">{</span>days<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span> days<span class="token punctuation">;</span> you&apos;ve made
+        <span class="token operator">&lt;</span>Numeral num<span class="token operator">=</span><span class="token punctuation">{</span>money<span class="token punctuation">}</span> format<span class="token operator">=</span><span class="token string">&apos;($ 0.00 a)&apos;</span> <span class="token operator">/</span><span class="token operator">&gt;</span> dollars<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>If we rendered money in enough places in our application, it might
-also make sense to build a <code>&lt;Currency currency=&apos;usd&apos;/&gt;</code> element to
+also make sense to build a <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Currency</span> <span class="token attr-name">currency</span><span class="token attr-value"><span class="token punctuation">=</span>&apos;usd&apos;</span><span class="token punctuation">/&gt;</span></span></code> element to
 display different countries&apos; currency. For now, the raw ability of the
-<code>&lt;Numerical/&gt;</code> element serves any additional number-rendering need
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Numerical</span><span class="token punctuation">/&gt;</span></span></code> element serves any additional number-rendering need
 that may crop up in our application.</p>
-<p>Notice that the <code>&lt;Numeral/&gt;</code> element will behave exactly the same as
-the <code>&lt;HumaneNumber/&gt;</code> element if you leave out the <code>format</code> because
-the default format for <code>&lt;Numeral/&gt;</code> is the same. This brings up an
+<p>Notice that the <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Numeral</span><span class="token punctuation">/&gt;</span></span></code> element will behave exactly the same as
+the <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>HumaneNumber</span><span class="token punctuation">/&gt;</span></span></code> element if you leave out the <code>format</code> because
+the default format for <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Numeral</span><span class="token punctuation">/&gt;</span></span></code> is the same. This brings up an
 interesting design decision when building dumb elements. How much of
 the API should you expose?</p>
-<p><code>&lt;HumaneNumber/&gt;</code> has a much more restrictive API. The benefits of
-this include always knowing how a <code>&lt;HumaneNumber/&gt;</code> will treat a <code>num</code>
+<p><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>HumaneNumber</span><span class="token punctuation">/&gt;</span></span></code> has a much more restrictive API. The benefits of
+this include always knowing how a <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>HumaneNumber</span><span class="token punctuation">/&gt;</span></span></code> will treat a <code>num</code>
 attribute and a smaller API surface area.</p>
-<p><code>&lt;Numeral/&gt;</code> provides more power, but has a larger API surface area
+<p><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Numeral</span><span class="token punctuation">/&gt;</span></span></code> provides more power, but has a larger API surface area
 and is easily modified to show numbers differently.</p>
-<p>Often, I&apos;ll opt for a more opinionated API such as <code>&lt;HumaneNumber/&gt;</code>
+<p>Often, I&apos;ll opt for a more opinionated API such as <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>HumaneNumber</span><span class="token punctuation">/&gt;</span></span></code>
 because it clearly expresses the intent I had when I built the
 UI. There are no questions about whether I forgot a comma, etc in the
 formatting string because of the restrictive API. More powerful APIs
-such as <code>&lt;Numeral/&gt;</code> are <em>always</em> nice to have in case an unexpected
+such as <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Numeral</span><span class="token punctuation">/&gt;</span></span></code> are <em>always</em> nice to have in case an unexpected
 situation arises. One can even build more opinionated elements from
 the more powerful elements. The API can be optionally restricted for
 each additional element while the more powerful or harder-to-use API
