@@ -16,12 +16,14 @@ The TC39 categorises proposals into 4 stages:
 * Stage 3 - Candidate
 * Stage 4 - Finished
 
-All of the code in this book is written using a stage 0 babel
-transpiler. This means we have access to future ECMAScript features
-all the way up to the Strawman stage (currently considered "ES7"). We
-do this because this is a book about writing UI in the future and to
-explore that, we will use what the cutting edge looks like today as
-our starting point.
+All of the code in this book is written in "future" style using babel
+to transpile. By "future", we mean that not only do we get to use
+ECMAScript 2015, but we also use more experimental Strawman proposals
+as well as some non-spec extensions (for example, extensions made for
+minification or React). These are codified as
+[babel plugins](http://babeljs.io/docs/plugins/). We do this because
+the evolution of the JavaScript language is increasingly being
+explored through transpilation and implementation in the wild.
 
 ## Code examples
 

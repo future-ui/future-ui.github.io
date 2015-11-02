@@ -207,3 +207,6 @@ value. This is because of the fact that JSX transforms into JS, which
 means returning multiple root nodes would mean the same thing as
 returning multiple functions.
 
+[React#render]: https://facebook.github.io/react/docs/component-specs.html#render
+[babel]: https://babeljs.io/
+[jsx]: https://facebook.github.io/jsx/

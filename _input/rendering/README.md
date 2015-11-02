@@ -13,7 +13,7 @@ React is a component model for abstractions.
 ## Virtual DOM
 
 The abstraction used which allows us to render to multiple targets is
-referred to as the Virtual DOM. Simply speaking, the Virtual DOM is a tree
+referred to as the Virtual DOM. Simply speaking, the Virtual DOM is a data
 structure which allows us to diff against previous versions of our
 rendered application.
 
