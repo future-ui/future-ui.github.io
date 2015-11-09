@@ -79,5 +79,6 @@
   * [Composition](patterns/composition.md)
 * [Data Vizualization](data-visualization/README.md)
 * [Fate](fate/README.md)
+  * [Atomic Design](fate/atomic-design.md)
   * [Getting Started](fate/getting-started.md)
   * [Bringing it all Together](fate/bringing-it-all-together.md)
