@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Rendering | Future UI</title>
+        <title>Atomic Design | Future UI</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -29,10 +29,8 @@
         
     
     
-    <link rel="next" href="../rendering/basics.html" />
     
-    
-    <link rel="prev" href="../index.html" />
+    <link rel="prev" href="../utils/index.html" />
     
 
         
@@ -40,7 +38,7 @@
     <body>
         
         
-    <div class="book" data-level="1" data-basepath=".." data-revision="Sun Nov 08 2015 22:03:56 GMT-0800 (PST)">
+    <div class="book" data-level="13.1" data-basepath=".." data-revision="Sun Nov 08 2015 22:03:56 GMT-0800 (PST)">
     
 
 <div class="book-summary">
@@ -71,7 +69,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1" data-path="rendering/index.html">
+        <li class="chapter " data-level="1" data-path="rendering/index.html">
             
                 
                     <a href="../rendering/index.html">
@@ -787,7 +785,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="13.1" data-path="fate/atomic-design.html">
+        <li class="chapter active" data-level="13.1" data-path="fate/atomic-design.html">
             
                 
                     <a href="../fate/atomic-design.html">
@@ -927,37 +925,51 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="rendering">Rendering</h1>
-<p>In this book, we will be focusing on React for controlling the
-rendering of our applications. According to the React site, React is:</p>
-<blockquote>
-<p>A JavaScript library for building user interfaces</p>
-</blockquote>
-<p>Notice that there is no mention of the DOM because React is not tied
-to a specific render target. In practice, this means we can render to
-DOM, SVG, Canvas and even native iOS components. Most importantly,
-React is a component model for abstractions.</p>
-<h2 id="virtual-dom">Virtual DOM</h2>
-<p>The abstraction used which allows us to render to multiple targets is
-referred to as the Virtual DOM. Simply speaking, the Virtual DOM is a data
-structure which allows us to diff against previous versions of our
-rendered application.</p>
-<p>In practice one of the benefits is that we have to worry less about
-DOM insertion optimizations such as batching updates. A spec-compliant
-synthetic event system means that bubbling and capturing works the
-same across browsers.</p>
-<p>The React docs explain the implications well:</p>
-<blockquote>
-<p><strong>Event delegation:</strong> React doesn&apos;t actually attach event handlers to
-the nodes themselves. When React starts up, it starts listening for
-all events at the top level using a single event listener. When a
-component is mounted or unmounted, the event handlers are simply
-added or removed from an internal mapping. When an event occurs,
-React knows how to dispatch it using this mapping. When there are no
-event handlers left in the mapping, React&apos;s event handlers are
-simple no-ops. To learn more about why this is fast, see <a href="http://davidwalsh.name/event-delegate" target="_blank">David
-Walsh&apos;s excellent blog post</a>.</p>
-</blockquote>
+                        <h1 id="atomic-design">Atomic Design</h1>
+<p>Atomic Design makes a loose analogy between chemistry and
+interfaces. As such, the stages are defined in order of increasing
+complexity: Atoms, Molecules, Organisms, Templates and Pages.</p>
+<h2 id="atoms">Atoms</h2>
+<p>Atoms are the basic building blocks of UI. They have distinct
+properties and can&apos;t be broken down further without losing their
+meaning. For interfaces, atoms are basic tags, such as form labels,
+inputs or buttons. They also include more abstract elements like color
+palettes, fonts, and animations.</p>
+<h2 id="molecules">Molecules</h2>
+<p>Molecules are groups of Atoms bonded together, which take on new
+properties as a result. For example, a form label, search input, and
+button atom can combine them together to form a search form molecule.
+Building up from atoms to molecules encourages a &#x201C;do one thing and do
+it well&#x201D; mentality, and encourages creating reusable interface
+patterns.</p>
+<h2 id="organisms">Organisms</h2>
+<p>Organisms are groups of molecules (and possibly atoms) joined together
+to form distinct section of an interface. Organisms can consist of
+similar and/or disparate molecule types. For example, a masthead
+organism might consist of a logo, navigation, and search form, while a
+&#x201C;product grid&#x201D; organism might consist of the same product info
+molecule repeated over and over. Building up from molecules to
+organisms encourages creating standalone, portable, reusable
+components.</p>
+<h2 id="templates">Templates</h2>
+<p>With templates, we break our chemistry analogy. Templates are
+comprised mostly of organisms combined together to form complete
+views. Templates provide context for these relatively abstract
+molecules and organisms, which is helpful for designers and clients
+alike. Templates mostly focus on content structure (such as character
+length, image size, etc) rather than the actual content.</p>
+<h2 id="pages">Pages</h2>
+<p>Pages are specific instances of templates. Pages are essential for
+testing the effectiveness of the design system. This final form allows
+us to loop back to modify our molecules, organisms, and templates to
+better address the real context of the design.</p>
+<p>Pages also provide a place to test variations in templates, such as
+testing an article containing a 40-character-length headline and other
+article with a 340-character-length headline. What does it look like
+when a user has one item in their shopping cart versus 10 items with a
+discount code applied? These specific page instances test the
+resiliency of the system, influencing how the underlying molecules,
+organisms, and templates are constructed.</p>
 
                     
                     </section>
@@ -968,10 +980,8 @@ Walsh&apos;s excellent blog post</a>.</p>
         </div>
 
         
-        <a href="../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="../utils/index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Utilities"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../rendering/basics.html" class="navigation navigation-next " aria-label="Next page: Basics"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
